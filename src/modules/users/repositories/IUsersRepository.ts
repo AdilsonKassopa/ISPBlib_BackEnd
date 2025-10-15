@@ -13,7 +13,7 @@ export interface IUsersRepository {
 
     save(data:createUser): Promise<userSave>
 
-    findUsers(name:string):Promise<userSave | undefined>
+    findUsers(name:string):Promise<userSave | null>
 
     deleteUser(id:string):Promise<userSave>
 
