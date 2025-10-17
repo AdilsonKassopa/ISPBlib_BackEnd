@@ -1,9 +1,9 @@
-type createUser = {
+export type createUser = {
     userName: string,
     password: string
 }
 
-type userSave = {
+export type userSave = {
     id: string,
     userName: string,
     password: string

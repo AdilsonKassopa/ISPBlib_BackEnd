@@ -1,8 +1,8 @@
-import { prismaClient } from "../../../database/client.js";
-import type { IUsersRepository } from "./IUsersRepository.js";
+import { prismaClient } from "../../../database/client.ts";
+import type { IUsersRepository } from "./IUsersRepository.ts";
 
 
-class UsersRepository implements IUsersRepository{
+class UsersPrismaRepository implements IUsersRepository{
     async deleteUser(id: string): Promise<{ id: string; userName: string; password: string; }> {
         const userDelete = await prismaClient.user.delete({
             where:{
@@ -31,4 +31,4 @@ class UsersRepository implements IUsersRepository{
 
 }
 
-export {UsersRepository}
+export {UsersPrismaRepository}

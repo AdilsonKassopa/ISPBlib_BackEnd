@@ -5,9 +5,8 @@
   "author": "AdilsonKassopa <AdilsonKassopa@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev":"ts-node  ./src/server.ts"
+    "dev":"ts-node-dev --transpile-only --respawn  src/server.ts"
   },
-  "type":"module",
   "dependencies": {
     "@prisma/client": "^6.17.0",
     "dotenv": "^17.2.3",
