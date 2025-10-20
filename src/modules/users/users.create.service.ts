@@ -1,4 +1,5 @@
 import type { createUser, IUsersRepository } from "./repositories/IUsersRepository.ts";
+import { HashBcrypt } from "./utils/hash.ts";
 
 
 
@@ -7,11 +8,13 @@ import type { createUser, IUsersRepository } from "./repositories/IUsersReposito
     constructor(private userRepository: IUsersRepository){}
 
     async execute(data:createUser){
-        const find = await this.userRepository.findUsers(data.userName)
+        const hashBcrypt = new HashBcrypt()
+        const {userName,password} = data
+        const find = await this.userRepository.findUsers(userName)
         if(find)
-            throw new Error(`o usuario ${data.userName} já existe`)
-        
-        return await this.userRepository.save(data)
+            throw new Error(`o usuario ${userName} já existe`)
+        const hash = hashBcrypt.hashPassword(password)
+        return await this.userRepository.save({userName,password:await hash})
     }
 }
 
