@@ -7,6 +7,7 @@ export class UsersDeleteService{
     constructor(private iusersRepository: IUsersRepository){}
     async deleteUser(id:string){
         const deleteUser = await this.iusersRepository.deleteUser(id)
+        console.log("hello word")
         if(!deleteUser)
             throw new Error("Usuario não existe")
        

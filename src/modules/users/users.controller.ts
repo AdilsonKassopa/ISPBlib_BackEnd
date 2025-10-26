@@ -18,12 +18,24 @@ export class UserController{
     }
     async delete(request:Request,response:Response){
        try{
-         const {id} = request.body
-        const delResult = await usersFactory.delService().deleteUser(id)
-        return response.status(200).json(delResult)
+            const {id} = request.body
+            const delResult = await usersFactory.delService().deleteUser(id)
+            return response.status(200).json(delResult)
        }catch(err:any){
             return response.status(400).json({
                 message:err.message
+            })
+        }
+    }
+
+    async login(request:Request,response:Response){
+        try{
+            const {userName,password} = request.body
+            const loginResult = await usersFactory.loginUser().execute({userName,password})
+            return response.status(200).json(loginResult)
+        }catch(err:any){
+            response.status(400).json({
+                message: err.message
             })
         }
     }

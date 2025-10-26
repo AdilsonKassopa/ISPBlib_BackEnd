@@ -5,7 +5,8 @@ const userRouter = Router()
 const userController = new UserController()
 
 userRouter.post("/",userController.create)
-userRouter.post("/delete",userController.delete)
+userRouter.delete("/delete",userController.delete)
+userRouter.post("/login",userController.login)
 
 
 export {userRouter}
