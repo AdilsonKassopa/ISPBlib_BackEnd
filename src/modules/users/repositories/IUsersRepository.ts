@@ -17,4 +17,6 @@ export interface IUsersRepository {
 
     deleteUser(id:string):Promise<userSave>
 
+    updatePassword(id:string,password:string):Promise<userSave>
+
 }

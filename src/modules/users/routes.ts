@@ -7,6 +7,7 @@ const userController = new UserController()
 userRouter.post("/",userController.create)
 userRouter.delete("/delete",userController.delete)
 userRouter.post("/login",userController.login)
+userRouter.put("/updatePassword",userController.updatePassword)
 
 
 export {userRouter}

@@ -9,12 +9,11 @@ import { HashBcrypt } from "./utils/hash.ts";
 
     async execute(data:createUser){
         const hashBcrypt = new HashBcrypt()
-        const {userName,password} = data
-        const find = await this.userRepository.findUsers(userName)
+        const find = await this.userRepository.findUsers(data.userName)
         if(find)
-            throw new Error(`o usuario ${userName} já existe`)
-        const hash = hashBcrypt.hashPassword(password)
-        return await this.userRepository.save({userName,password:await hash})
+            throw new Error(`o usuario ${data.userName} já existe`)
+        data.password = await hashBcrypt.hashPassword(data.password)
+        return await this.userRepository.save(data)
     }
 }
 

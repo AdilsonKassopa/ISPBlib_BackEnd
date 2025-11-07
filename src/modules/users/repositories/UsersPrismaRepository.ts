@@ -1,8 +1,19 @@
 import { prismaClient } from "../../../database/client.ts";
-import type { IUsersRepository } from "./IUsersRepository.ts";
+import type { createUser, IUsersRepository, userSave } from "./IUsersRepository.ts";
 
 
 class UsersPrismaRepository implements IUsersRepository{
+    async updatePassword(id:string ,password:string): Promise<userSave> {
+        const userPassword = await prismaClient.user.update({
+              where:{
+                    id:id
+                },
+            data:{
+                password:password
+            } 
+        })
+        return userPassword
+    }
     async deleteUser(id: string): Promise<{ id: string; userName: string; password: string; }> {
         const userDelete = await prismaClient.user.delete({
             where:{

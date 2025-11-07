@@ -1,4 +1,5 @@
 import { UsersPrismaRepository } from "./repositories/UsersPrismaRepository";
+import { UserUpdatePasswordService } from "./user.updatePassword.service";
 import { CreateUserService } from "./users.create.service";
 import { UsersDeleteService } from "./users.delete.service";
 import { UsersLoginService } from "./users.login.service";
@@ -19,5 +20,9 @@ export class UsersFactory{
     loginUser(){
         const usersLoginService = new UsersLoginService(usersPrismaRepository)
         return usersLoginService
+    }
+    updatePassword(){
+        const userUpdatePasswordService = new UserUpdatePasswordService(usersPrismaRepository)
+        return userUpdatePasswordService
     }
 }

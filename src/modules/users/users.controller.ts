@@ -39,5 +39,16 @@ export class UserController{
             })
         }
     }
+    async updatePassword(request:Request,response:Response){
+        try{
+            const {id,password} = request.body
+            const updatePasswordResult = await usersFactory.updatePassword().execute(id,password)
+            return response.status(200).json(updatePasswordResult)
+        }catch(err:any){
+            return response.status(400).json({
+                message: err.message
+            })
+        }
+    }
 
 }
