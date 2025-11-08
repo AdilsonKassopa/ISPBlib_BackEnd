@@ -51,4 +51,16 @@ export class UserController{
         }
     }
 
+    async findUser(request:Request,response:Response){
+        try{
+            const {userName} = request.body
+            const result = await usersFactory.findUserService().execute(userName)
+
+            return response.status(200).json(result)
+        }catch(err:any){
+            return response.status(400).json({
+                message:err.message
+            })
+        }
+    }
 }
