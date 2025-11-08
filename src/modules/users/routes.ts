@@ -8,7 +8,7 @@ userRouter.post("/",userController.create)
 userRouter.delete("/delete",userController.delete)
 userRouter.post("/login",userController.login)
 userRouter.put("/updatePassword",userController.updatePassword)
-userRouter.get("/findUser",userController.findUser)
+userRouter.post("/findUser",userController.findUser)
 
 
 export {userRouter}
