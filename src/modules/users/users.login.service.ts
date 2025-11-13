@@ -7,6 +7,7 @@ export class UsersLoginService{
     constructor(private iusersRepository:  IUsersRepository){}
     async execute({userName,password}:createUser){
         const user = await this.iusersRepository.findUsers(userName)
+        
         const hash = new HashBcrypt()
         if(!user)
             throw new Error("Usuario não existe")
