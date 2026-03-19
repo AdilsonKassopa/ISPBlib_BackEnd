@@ -2,6 +2,7 @@ import express from "express";
 const app = express()
 import { userRouter } from './modules/users/routes.ts'
 import cors from "cors";
+import { categoryRouter } from "./modules/categorias/routes.ts";
 
 const corsOption = {
     origin:'*',
@@ -13,5 +14,6 @@ const corsOption = {
 app.use(express.json())
 app.use(cors(corsOption))
 app.use("/users",userRouter)
+app.use('/category',categoryRouter)
 
 app.listen(3000, () => console.log('the server is running in port 3000'))

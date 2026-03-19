@@ -24,15 +24,45 @@ Livros
     - Livros
         columns:
             -id
-            -name
+            -titulo
+            -ISBN
             -Autor
             -volume
+            -ano_pub
+            -sinopse
+            -path_book
+            -status
+            -capa_livro
             -categoryid
+            -createAT
+            -updateAT
+            
+
     - Users
         columns:
             -id
             -username
             -password
+            -email
+            -createAT
+            -updateAT
+    -Category
+        columns:
+            -id
+            -nameCategory
+            -descricao
+            -categoriaPai
+            -status
+            -createAT
+            -updateAT
+    -Activity
+        columns:
+            -id
+            -nameActivity
+            -pathimg
+            -createAT
+            -updateAT
+
     - Forum
         columns:
             -id
@@ -47,10 +77,7 @@ Livros
             -Autor
             -Area
     
-    -Category
-        columns:
-            -id
-            -nameCategory
+
     
     - Area
         columns:

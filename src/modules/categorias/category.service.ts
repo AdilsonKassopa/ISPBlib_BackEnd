@@ -1,0 +1,43 @@
+import { ICategoryRepository } from "./repositories/ICategoryRepository";
+
+
+
+export class CategoryService{
+    constructor(private icategoryRepository :  ICategoryRepository){} // método construtor que ira receber o prismaRepository na inacialização do service
+   /**
+    * Método create, irá criar as categórias na bd
+    */
+    async create(name: string){
+        const category = await this.icategoryRepository.getCategory()
+        if(!name)// verificando se o campo name esta vazio
+            throw new Error('Campo nome não foi preenchido')
+        const categoryVerify = category.find((element) => element.name === name) // buscando uma categoria  
+        if(categoryVerify)                             // verificando se já existe a categória que se deseja criar
+            throw new Error('Esta categoria já existe')
+
+        return this.icategoryRepository.save(name)
+    }
+    /**
+     * método que irá buscar todas as categórias na bd 
+     */
+    async get(){
+        const category = await this.icategoryRepository.getCategory() //buscando todas as categorias na bd
+        if(!category) //verificar se existem categorias na bd
+            throw new Error('Nenhuma Categoria Registrada')
+
+        return category
+    }
+/**
+ * Método delete, para deletar uma categória
+ */
+    async delete(id:string){
+        const category = await this.icategoryRepository.getCategory() // buscando todas categorias na bd
+        if(!id)  // verificando se o id esta vazio
+            throw new Error('campo id vazio')
+        const verify = category.find((element) => element.id === id) // buscando a categoria com o mesmo id passado
+        if(!verify)                                                  //verificando se este id é válido na bd 
+            throw new Error('não existe esta categória')
+
+        return this.icategoryRepository.deleteCategory(id)
+    }
+}

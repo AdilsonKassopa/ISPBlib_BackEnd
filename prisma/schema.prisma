@@ -17,6 +17,61 @@ model user {
   id String @id @default(uuid())
   userName String
   password String
+  email String @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@map("users")
+}
+
+model Book{
+  id String @id @default(uuid())
+  titulo
+  ISBN String
+  Autor String
+  volume Int
+  ano_pub Int
+  sinopse String
+  path_book String
+  status Statu @relation(fields:[statusId], references:[id])
+  statusId String
+  pathCapa_livro String
+  category category @relation(fields:[categoryid], references:[id])
+  categoryid String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map(books)
+}
+
+model category{
+  id String @id @default(uuid())
+  name String
+  descricao String
+  categoriaId String
+  status Statu @relation(fields:[statusId], references:[id])
+  statusId String
+  book Book
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("categories")
+}
+
+model Statu{
+  id String @id @default(uuid())
+  status String
+  book Book
+  category category
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("status")
+}
+
+model Activity{
+  id String @id @default(uuid())
+  activity String
+  pathImg Sring
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
