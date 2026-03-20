@@ -1,4 +1,4 @@
-import { ICategoryRepository } from "./repositories/ICategoryRepository";
+import { categoryData, ICategoryRepository } from "./repositories/ICategoryRepository";
 
 
 
@@ -7,15 +7,15 @@ export class CategoryService{
    /**
     * Método create, irá criar as categórias na bd
     */
-    async create(name: string){
+    async create(data:categoryData){
         const category = await this.icategoryRepository.getCategory()
-        if(!name)// verificando se o campo name esta vazio
-            throw new Error('Campo nome não foi preenchido')
-        const categoryVerify = category.find((element) => element.name === name) // buscando uma categoria  
+        if(!data )// verificando se o data esta vazio
+            throw new Error('todos os campos devesm ser preenchido')
+        const categoryVerify = category.find((element) => element.name === data.name) // buscando uma categoria  
         if(categoryVerify)                             // verificando se já existe a categória que se deseja criar
             throw new Error('Esta categoria já existe')
 
-        return this.icategoryRepository.save(name)
+        return await this.icategoryRepository.save(data)
     }
     /**
      * método que irá buscar todas as categórias na bd 

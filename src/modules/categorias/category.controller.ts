@@ -7,8 +7,8 @@ const categoryFactoryService = new CategoryFactoryService()
 export class CategoryController{
     async create(request:Request,response:Response){
         try{
-            const {name} = request.body
-            return response.status(200).json( await categoryFactoryService.factory().create(name))
+            const {name,descricao,categoriaId,statusId} = request.body
+            return response.status(200).json( await categoryFactoryService.factory().create({name,descricao,categoriaId,statusId}))
         }catch(err:any){
             return response.status(400).json({
                 message:err.message

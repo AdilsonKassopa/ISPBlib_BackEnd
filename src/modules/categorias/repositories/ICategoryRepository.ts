@@ -1,11 +1,21 @@
 export type categorySave = {
     id: string,
     name: string,
-    dataCriacao: Date
+    descricao: string,
+    categoriaId: string,
+    statusId: string,
+    createdAt: Date,
+    updatedAt: Date
+}
+export type categoryData = {
+    name:string,
+    descricao:string,
+    categoriaId:string,
+    statusId:string
 }
 
 export interface ICategoryRepository{
-    save(name:string): Promise<categorySave>
+    save(Data:categoryData): Promise<categorySave>
     getCategory():Promise<categorySave[]>
     deleteCategory(id:string):Promise<categorySave>
 }

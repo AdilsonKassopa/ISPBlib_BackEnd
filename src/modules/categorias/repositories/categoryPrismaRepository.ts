@@ -1,12 +1,15 @@
 import { prismaClient } from "../../../database/client";
-import { categorySave, ICategoryRepository } from "./ICategoryRepository";
+import { categoryData, categorySave, ICategoryRepository } from "./ICategoryRepository";
 
 
 export class CategoryPrismaRepository implements ICategoryRepository{
-   async save(name: string): Promise<categorySave> {
+    async save({name,descricao,categoriaId,statusId}:categoryData): Promise<categorySave> {
         const categorySave = await prismaClient.category.create({
             data:{
-                name
+                name,
+                descricao,
+                categoriaId,
+                statusId
             }
         })
 

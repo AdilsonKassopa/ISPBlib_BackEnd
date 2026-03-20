@@ -1,12 +1,14 @@
 export type createUser = {
     userName: string,
-    password: string
+    password: string,
+    email: string
 }
 
 export type userSave = {
     id: string,
     userName: string,
-    password: string
+    password: string,
+    email: string
 }
 
 export interface IUsersRepository {
