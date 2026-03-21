@@ -15,7 +15,7 @@ export class ActivityPrismaRepository implements IActivityRepository{
             return activities
     }
     async getActivity(): Promise<activitySave[]> {
-        const data = await prismaClient.activity.findMany()
+        const data = await prismaClient.activity.findMany({take:10})
         return data
     }
 

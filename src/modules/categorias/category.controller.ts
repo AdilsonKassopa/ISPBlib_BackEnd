@@ -34,4 +34,15 @@ export class CategoryController{
             })
         }
     }
+    async update(request:Request,response:Response){
+        try{
+            const {id,data} = request.body
+
+            return response.status(200).json(await categoryFactoryService.factory().update(id,data))
+        }catch(err:any){
+            return response.status(400).json({
+                message:err.message
+            })
+        }
+    }
 }

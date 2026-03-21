@@ -3,6 +3,18 @@ import { categoryData, categorySave, ICategoryRepository } from "./ICategoryRepo
 
 
 export class CategoryPrismaRepository implements ICategoryRepository{
+    async update(id: string, data: categoryData): Promise<categorySave> {
+        const categories = prismaClient.category.update({
+            where:{
+                id:id
+            },
+            data:{
+                ...data
+            }
+        })
+
+        return categories
+    }
     async save({name,descricao,categoriaId,statusId}:categoryData): Promise<categorySave> {
         const categorySave = await prismaClient.category.create({
             data:{

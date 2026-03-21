@@ -5,7 +5,7 @@ import type { createUser, IUsersRepository, userSave } from "./IUsersRepository.
 class UsersPrismaRepository implements IUsersRepository{
     async updatePassword(id:string ,password:string): Promise<userSave> {
         const userPassword = await prismaClient.user.update({
-              where:{
+            where:{
                     id:id
                 },
             data:{

@@ -40,4 +40,18 @@ export class CategoryService{
 
         return this.icategoryRepository.deleteCategory(id)
     }
+
+    async update(id:string,data:categoryData){
+        if(!id)
+            throw new Error('nenhum id fornecido')
+        const Id = await (await this.icategoryRepository.getCategory()).find((element) => element.id === id)
+        if(!Id)
+            throw new Error('a cayegoria não existe na bd')
+        
+        if(!data)
+            throw new Error('nenhum dado fornecido')
+
+        return await this.icategoryRepository.update(id,data)
+    }
+
 }

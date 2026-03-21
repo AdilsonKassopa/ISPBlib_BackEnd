@@ -18,4 +18,5 @@ export interface ICategoryRepository{
     save(Data:categoryData): Promise<categorySave>
     getCategory():Promise<categorySave[]>
     deleteCategory(id:string):Promise<categorySave>
+    update(id:string,data:categoryData):Promise<categorySave>
 }

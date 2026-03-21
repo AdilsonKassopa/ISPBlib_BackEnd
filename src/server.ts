@@ -4,6 +4,7 @@ import { userRouter } from './modules/users/routes.ts'
 import cors from "cors";
 import { categoryRouter } from "./modules/categorias/routes.ts";
 import { activityRouter } from "./modules/activity/routes.ts";
+import { bookRouter } from "./modules/books/routes.ts";
 
 const corsOption = {
     origin:'*',
@@ -17,5 +18,7 @@ app.use(cors(corsOption))
 app.use("/user",userRouter)
 app.use('/category',categoryRouter)
 app.use('/activity',activityRouter)
+app.use('/book',bookRouter)
+
 
 app.listen(3000, () => console.log('the server is running in port 3000'))
