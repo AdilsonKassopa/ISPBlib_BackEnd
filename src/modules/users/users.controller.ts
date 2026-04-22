@@ -30,8 +30,8 @@ export class UserController{
 
     async login(request:Request,response:Response){
         try{
-            const {userName,password} = request.body
-            const loginResult = await usersFactory.loginUser().execute({userName,password})
+            const {email,password} = request.body
+            const loginResult = await usersFactory.loginUser().execute({email,password})
             return response.status(200).json(loginResult)
         }catch(err:any){
             response.status(400).json({

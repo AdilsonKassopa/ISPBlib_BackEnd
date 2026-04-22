@@ -30,10 +30,10 @@ class UsersPrismaRepository implements IUsersRepository{
 
         return userSave
     }
-    async findUsers(name:string): Promise<{ id: string; userName: string; password: string; email: string; } | null> {
+    async findUsers(email:string): Promise<{ id: string; userName: string; password: string; email: string; } | null> {
         const user = await prismaClient.user.findFirst({
             where:{
-                userName:name
+                email:email
             }
         })
         return user

@@ -2,7 +2,7 @@ export type categorySave = {
     id: string,
     name: string,
     descricao: string,
-    categoriaId: string,
+    categoriaId?: string | null,
     statusId: string,
     createdAt: Date,
     updatedAt: Date

@@ -8,12 +8,12 @@ export class ActivityService{
     /**
      *Metodo para criar actividade
      */
-    async execute(activity:string,pathImg:string){
+    async execute(activity:string,descricao:string,pathImg:string){
 
-        if(!activity || !pathImg)
+        if(!activity || !descricao)
             throw new Error('não foi passado o valor da actividade ou o caminho da imagem')
 
-        return await this.iactivityRepository.save(activity,pathImg)
+        return await this.iactivityRepository.save(activity,descricao,pathImg)
     }
     /**
      * Metodo para buscar as actividade

@@ -5,8 +5,8 @@ import { HashBcrypt } from "./utils/hash";
 
 export class UsersLoginService{
     constructor(private iusersRepository:  IUsersRepository){}
-    async execute({userName,password}:createUser){
-        const user = await this.iusersRepository.findUsers(userName)
+    async execute({email,password}:createUser){
+        const user = await this.iusersRepository.findUsers(email)
         
         const hash = new HashBcrypt()
         if(!user)

@@ -4,10 +4,11 @@ import { activitySave, IActivityRepository } from "./IActivity.repositoy";
 
 
 export class ActivityPrismaRepository implements IActivityRepository{
-    async save(activity: string, pathImg: string): Promise<activitySave> {
+    async save(activity: string, descricao: string,pathImg:string): Promise<activitySave> {
         const activities = await prismaClient.activity.create({
                 data:{
                 activity,
+                descricao,
                 pathImg
                 }
             })

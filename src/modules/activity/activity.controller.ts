@@ -7,8 +7,8 @@ const activityFactoryService = new ActivityFactoryService()
 export class ActivityController{
     async create(request:Request,response:Response){
         try{
-            const {activity,pathImg} = request.body
-            return response.status(200).json(await activityFactoryService.factory().execute(activity,pathImg))
+            const {activity,descricao,pathImg} = request.body
+            return response.status(200).json(await activityFactoryService.factory().execute(activity,descricao,pathImg))
 
         }catch(err:any){
             return response.status(400).json({

@@ -28,7 +28,9 @@ model Book{
   id String @id @default(uuid())
   titulo String
   ISBN String
-  Autor String
+  Idioma String
+  Pais String
+  Paginas String
   volume Int
   ano_pub Int
   sinopse String
@@ -36,6 +38,8 @@ model Book{
   status Statu @relation(fields:[statusId], references:[id])
   statusId String
   pathCapa_livro String
+  autorId String
+  author Author @relation(fields:[autorId], references:[id])
   category category @relation(fields:[categoryid], references:[id])
   categoryid String
   createdAt DateTime @default(now())
@@ -47,10 +51,12 @@ model category{
   id String @id @default(uuid())
   name String
   descricao String
-  categoriaId String
+  categoriaId String?
   status Statu @relation(fields:[statusId], references:[id])
   statusId String
   book Book[]
+  category category? @relation("CategoriaPai",fields:[categoriaId], references:[id])
+  categories category[] @relation("CategoriaPai")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -71,9 +77,22 @@ model Statu{
 model Activity{
   id String @id @default(uuid())
   activity String
+  descricao String
   pathImg String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   @@map("activities")
+}
+
+model Author{
+  id String @id @default(uuid())
+  name String
+  descricao String
+  pathImg String?
+  book Book[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("authors")
 }
