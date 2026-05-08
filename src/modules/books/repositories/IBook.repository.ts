@@ -1,27 +1,33 @@
 export type createBook = {
-    titulo:string,
-    ISBN:string,
-    Autor:string,
+    titulo: string,
+    ISBN: string,
+    Idioma:string,
+    Pais:string,
+    Paginas:string,
     volume:number,
     ano_pub:number,
     sinopse:string,
-    path_book:string,
     statusId:string,
+    autorId:string,
+    categoryid:string,
     pathCapa_livro:string,
-    categoryid:string
+    path_book:string
 }
 export type book = {
     id:string,
-    titulo:string,
-    ISBN:string,
-    Autor:string,
+    titulo: string,
+    ISBN: string,
+    Idioma:string,
+    Pais:string,
+    Paginas:string,
     volume:number,
     ano_pub:number,
     sinopse:string,
-    path_book:string,
     statusId:string,
+    autorId:string,
+    categoryid:string,
     pathCapa_livro:string,
-    categoryid:string
+    path_book:string
     createdAt:Date,
     updatedAt:Date
 }

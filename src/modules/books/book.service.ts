@@ -9,12 +9,14 @@ export class BookService{
     * Método create, irá criar os livros 
     */
     async create(data:createBook){
+        
         const book = await (await this.ibookRepository.get()).find((element) => element.titulo === data.titulo) //buscando o livro na bd
         if(book)
             throw new Error('o livro já existe')
         if(!data)
             throw new Error('nenhum dado fornecido')
-
+        
+        
         return await this.ibookRepository.save(data)
 
     }

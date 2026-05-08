@@ -65,4 +65,30 @@ export class UserController{
             })
         }
     }
+    async get(request:Request,response:Response){
+        try{
+            
+            const result = await usersFactory.service().finduser()
+
+            
+            return response.status(200).json(result)
+        }catch(err:any){
+            return response.status(400).json({
+                message:err.message
+            })
+        }
+    }
+    async update(request:Request,response:Response){
+        try{
+            const {id,userName,email} = request.body
+            const result = await usersFactory.service().updateUser(id,{userName,email})
+
+            
+            return response.status(200).json(result)
+        }catch(err:any){
+            return response.status(400).json({
+                message:err.message
+            })
+        }
+    }
 }

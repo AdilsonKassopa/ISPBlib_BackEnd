@@ -6,8 +6,49 @@ const bookFactorService = new BookfactorService()
 export class BookController{
     async create(request:Request,response:Response){
         try{
-            const data = request.body
-            return response.status(200).json(await bookFactorService.factor().create(data))
+            const {
+                titulo,
+                ISBN,
+                Idioma,
+                Pais,
+                Paginas,
+                volume,
+                ano_pub,
+                sinopse,
+                statusId,
+                autorId,
+                categoryid
+            } = request.body
+            
+            // Tipagem para múltiplos arquivos
+            const files = request.files as { 
+                [fieldname: string]: Express.Multer.File[] 
+            };
+
+            // Arquivo 1: Imagem da capa
+            const pathCapa_livro = `images/${files?.['pathCapa_livro']?.[0]?.filename}`;
+      
+            // Arquivo 2: PDF do livro
+            const path_book = `documents/${files?.['path_book']?.[0]?.filename}`;
+
+
+            
+
+            return response.status(200).json(await bookFactorService.factor().create({
+                titulo,
+                ISBN,
+                Idioma,
+                Pais,
+                Paginas,
+                volume: parseInt(volume),
+                ano_pub: parseInt(ano_pub),
+                sinopse,
+                statusId,
+                autorId,
+                categoryid,
+                pathCapa_livro,
+                path_book
+            }))
         }catch(err:any){
             return response.status(400).json({
                 message:err.message
@@ -40,9 +81,47 @@ export class BookController{
 
     async update(request:Request,response:Response){
         try{
-            const {id,data} = request.body
+            const {
+                id,
+                titulo,
+                ISBN,
+                Idioma,
+                Pais,
+                Paginas,
+                volume,
+                ano_pub,
+                sinopse,
+                statusId,
+                autorId,
+                categoryid
+            } = request.body
+            
+            // Tipagem para múltiplos arquivos
+            const files = request.files as { 
+                [fieldname: string]: Express.Multer.File[] 
+            };
 
-            return response.status(200).json( await bookFactorService.factor().update(id,data))
+            // Arquivo 1: Imagem da capa
+            const pathCapa_livro = `images/${files?.['pathCapa_livro']?.[0]?.filename}`;
+      
+            // Arquivo 2: PDF do livro
+            const path_book = `documents/${files?.['path_book']?.[0]?.filename}`;
+
+            return response.status(200).json( await bookFactorService.factor().update(id,{
+                titulo,
+                ISBN,
+                Idioma,
+                Pais,
+                Paginas,
+                volume: parseInt(volume),
+                ano_pub: parseInt(ano_pub),
+                sinopse,
+                statusId,
+                autorId,
+                categoryid,
+                pathCapa_livro,
+                path_book
+            }))
         }catch(err:any){
             return response.status(400).json({
                 message:err.message

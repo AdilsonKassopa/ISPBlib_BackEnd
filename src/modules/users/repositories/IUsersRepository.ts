@@ -1,6 +1,6 @@
 export type createUser = {
     userName?: string,
-    password: string,
+    password?: string,
     email: string
 }
 
@@ -8,7 +8,9 @@ export type userSave = {
     id: string,
     userName: string,
     password: string,
-    email: string
+    email: string,
+    createdAt: Date,
+    updatedAt: Date
 }
 
 export interface IUsersRepository {
@@ -20,5 +22,9 @@ export interface IUsersRepository {
     deleteUser(id:string):Promise<userSave>
 
     updatePassword(id:string,password:string):Promise<userSave>
+
+    findMany():Promise<userSave[]>
+
+    updateUser(id:string,data:createUser):Promise<userSave>
 
 }

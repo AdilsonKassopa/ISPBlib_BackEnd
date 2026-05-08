@@ -1,5 +1,7 @@
+import { generateToken } from "../../utils/jwt.util";
 import { createUser, IUsersRepository } from "./repositories/IUsersRepository";
 import { HashBcrypt } from "./utils/hash";
+
 
 
 
@@ -16,7 +18,8 @@ export class UsersLoginService{
         if(!verifyPass)
             throw new Error("A Password esta incorreta")
 
-        return {"message":"Login realizado com suscesso"}
+        const token = generateToken({id:user.id,email:user.email})
+        return token
 
     }
 

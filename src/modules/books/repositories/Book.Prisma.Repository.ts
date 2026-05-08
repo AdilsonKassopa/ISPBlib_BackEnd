@@ -5,9 +5,13 @@ import { book, createBook, IBookRepository } from "./IBook.repository";
 
 export class BookPrismaRepository implements IBookRepository{
     async save(data: createBook): Promise<book> {
+        console.log('carreguei:', data);
+        
         const books = await prismaClient.book.create({
             data:data
         })
+        console.log('salvei os dados',books);
+        
         return books
     }
     async get(): Promise<book[]> {
